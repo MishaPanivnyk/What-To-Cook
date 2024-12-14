@@ -1,15 +1,14 @@
-import { MainContent } from 'components/MainContent/MainContent';
-
+import { FavoriteContent } from 'components/FavoriteContent/FavoriteContent';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 
-const MainPage = () => {
+const FavoritePage = () => {
   return (
     <main>
       <div style={{ display: 'flex', height: '100vh', gap: '10px' }}>
         <Sidebar />
-        <MainContent />
+        <FavoriteContent />
       </div>
     </main>
   );
 };
-export default MainPage;
+export default FavoritePage;
