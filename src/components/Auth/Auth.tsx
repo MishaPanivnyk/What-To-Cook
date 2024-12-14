@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Tabs, Tab, Box, TextField, Button, Typography } from '@mui/material';
+import { Tabs, Tab, Box, TextField, Button } from '@mui/material';
 import { AuthContainer } from './Auth.styled';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -16,7 +16,6 @@ export const Auth: React.FC = () => {
     confirmPassword: '',
   });
   const [error, setError] = useState<string | null>(null);
-  // eslint-disable-next-line
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -57,6 +56,7 @@ export const Auth: React.FC = () => {
           setError(err.response.data || 'Failed to login');
         } else {
           setError('Network error or no response');
+          toast.error(error);
         }
       } else {
         setError('An unexpected error occurred');
@@ -141,14 +141,7 @@ export const Auth: React.FC = () => {
             }}
           />
         </Tabs>
-        {error && (
-          <Typography
-            variant="body2"
-            sx={{ color: 'red', textAlign: 'center', mt: 2 }}
-          >
-            {error}
-          </Typography>
-        )}
+
         <Box sx={{ mt: 3 }}>
           {activeTab === 0 && (
             <Box>
@@ -199,6 +192,7 @@ export const Auth: React.FC = () => {
                 sx={{ mt: 2 }}
                 onClick={handleLogin}
                 style={{ color: 'white' }}
+                disabled={loading}
               >
                 Login
               </Button>
@@ -282,6 +276,7 @@ export const Auth: React.FC = () => {
                 sx={{ mt: 2 }}
                 onClick={handleRegister}
                 style={{ color: 'white' }}
+                disabled={loading}
               >
                 Register
               </Button>
