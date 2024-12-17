@@ -10,7 +10,7 @@ import {
 import { IoSearchOutline } from 'react-icons/io5';
 import { RecipeCard } from 'components/RecipeCard/RecipeCard';
 import { SearchContentContainer } from './Search.styled';
-
+const apiUrl = import.meta.env.VITE_API_URL;
 type Recipe = {
   id: number;
   title: string;
@@ -35,7 +35,7 @@ export const SearchContent: React.FC = () => {
 
       try {
         const response = await axios.get<Recipe[]>(
-          `http://127.0.0.1:8000/api/recipes/search/?query=${searchTerm}`
+          `${apiUrl}/recipes/search/?query=${searchTerm}`
         );
         setRecipes(response.data);
       } catch (err: unknown) {
@@ -53,7 +53,7 @@ export const SearchContent: React.FC = () => {
 
     const delayDebounceFn = setTimeout(() => {
       fetchRecipes();
-    }, 300); // Дебаунс для затримки запитів
+    }, 300);
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
@@ -134,13 +134,12 @@ export const SearchContent: React.FC = () => {
         </Typography>
       )}
 
-      {/* Контейнер для карток рецептів */}
       <Box
         sx={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-          gap: 3,
-          mt: 4, // Відстань між інпутом і картками
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 4,
+          mt: 4,
         }}
       >
         {recipes.map(recipe => (
