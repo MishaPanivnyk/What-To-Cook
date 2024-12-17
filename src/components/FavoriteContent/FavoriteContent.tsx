@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FavoriteContentContainer } from './FavoriteContent.styled';
+import {
+  FavoriteContentContainer,
+  LoaderWrapper,
+} from './FavoriteContent.styled';
 import { RecipeCard } from 'components/RecipeCard/RecipeCard';
 import { Loader } from 'components/Loader/Loader';
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 type Recipe = {
   id: number;
@@ -18,9 +23,7 @@ export const FavoriteContent: React.FC = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get<Recipe[]>(
-          'http://127.0.0.1:8000/api/recipes/'
-        );
+        const response = await axios.get<Recipe[]>(`${apiUrl}/recipes/`);
         setRecipes(response.data);
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
@@ -38,23 +41,26 @@ export const FavoriteContent: React.FC = () => {
     fetchRecipes();
   }, []);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
     <FavoriteContentContainer>
-      {recipes.map(recipe => (
-        <RecipeCard
-          key={recipe.id}
-          title={recipe.title}
-          imageUrl={recipe.photo}
-        />
-      ))}
+      {loading && (
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      )}
+      {error && <div>{error}</div>}
+      {!loading && !error && recipes.length === 0 && (
+        <div>No recipes available.</div>
+      )}
+      {!loading &&
+        !error &&
+        recipes.map(recipe => (
+          <RecipeCard
+            key={recipe.id}
+            title={recipe.title}
+            imageUrl={recipe.photo}
+          />
+        ))}
     </FavoriteContentContainer>
   );
 };
