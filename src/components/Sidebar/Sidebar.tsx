@@ -37,7 +37,7 @@ export const Sidebar: React.FC = () => {
         }}
       />
       <SidebarList>
-        <SidebarItemLink to="/">
+        <SidebarItemLink to="/recipes-generate">
           <SidebarItem>
             <RiRobot2Line />
           </SidebarItem>
@@ -47,7 +47,7 @@ export const Sidebar: React.FC = () => {
             <RxAvatar />
           </SidebarItem>
         </SidebarItemLink>
-        <SidebarItemLink to="/">
+        <SidebarItemLink to="/recipes-create">
           <SidebarItem>
             <MdOutlineLibraryAdd />
           </SidebarItem>
