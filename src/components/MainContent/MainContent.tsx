@@ -1,17 +1,18 @@
 import React from 'react';
 import {
   MainContentContainer,
-  //   MainContentItem,
-  //   MainContentList,
+  // MainContentList,
 } from './MainContent.styled';
-// import { Slider } from 'components/Slider/Slider';
+import { PopularRecipes } from 'components/PopularRecipes/PopularRecipes';
+import { PopularIngredients } from 'components/PopularIngredients/PopularIngredients';
+import { Slider } from 'components/Slider/Slider';
 
 export const MainContent: React.FC = () => {
   return (
     <MainContentContainer>
-      {/* <Slider /> */}
-      {/* <PopularDishes />
-      <SeasonalIngredients /> */}
+      <Slider />
+      <PopularRecipes />
+      <PopularIngredients />
     </MainContentContainer>
   );
 };
