@@ -8,7 +8,9 @@ interface CardProps {
 export const RecipeCard: React.FC<CardProps> = ({ title, imageUrl }) => {
   return (
     <CardContainer>
-      <CardImage imageUrl={imageUrl} />
+      <CardImage
+        imageUrl={`https://res.cloudinary.com/v1734434107/${imageUrl}`}
+      />
       <CardContent>{title}</CardContent>
     </CardContainer>
   );
