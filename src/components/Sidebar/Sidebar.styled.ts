@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const SidebarNav = styled.nav`
-  width: 80px;
+  width: 70px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 0;
+  padding: 15px 10px;
   backdrop-filter: blur(10px);
   box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
   border: 2px solid rgba(255, 255, 255, 0.18);
